@@ -1,0 +1,5 @@
+com/uday/studentservice/StudentServiceApplication.class
+com/uday/studentservice/controller/StudentConrtroller.class
+com/uday/studentservice/model/Student.class
+com/uday/studentservice/service/StudentService.class
+com/uday/studentservice/repo/StudentRepo.class

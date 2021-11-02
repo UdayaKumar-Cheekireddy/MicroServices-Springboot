@@ -1,0 +1,42 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: APP_GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id: STUDENT-SERVICE
+        uri: lb://STUDENT-SERVICE
+        predicates:
+        - Path=/student/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: STUDENT-SERVICE
+            fallbackuri: forward:/studentServiceFallBack
+      - id: COURSE-APP
+        uri: lb://COURSE-APP
+        predicates:
+        - Path=/course/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: COURSE-APP
+            fallbackuri: forward:/courseServiceFallBack
+
+
+
+
+
+
+
+
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    server-url:
+#      default-zone: http://localhost:8761/eureka/
+#  instance: localhost
